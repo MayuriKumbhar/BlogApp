@@ -5,7 +5,7 @@ import { BlogTags } from '../blog.enum';
 @InputType()
 export class BlogInputType {
   @Field({ nullable: true })
-  id: number;
+  id: string;
 
   @Field()
   title: string;

@@ -7,7 +7,6 @@ import { GQLAuthGuard } from 'src/user/gql.authguard';
 import { GetUser } from 'src/user/get.user.decorator';
 import { UserEntity } from 'src/user/user.entity';
 import { BlogsFilter } from './blog.filter';
-import { argsToArgsConfig } from 'graphql/type/definition';
 
 @Resolver((of) => BlogType)
 @UseGuards(GQLAuthGuard)
@@ -15,7 +14,7 @@ export class BlogResolver {
   constructor(private blogService: BlogService) {}
 
   @Query((returns) => BlogType)
-  blogs(@Args('id') id: number) {
+  getBlog(@Args('id') id: string) {
     return this.blogService.getBlogById(id);
   }
 
@@ -31,12 +30,12 @@ export class BlogResolver {
   }
 
   @Mutation((returns) => BlogType)
-  updateBlog(@Args('id') id: number, @Args('input') input: BlogInputType) {
-    return this.blogService.updateBlog(id, input);
+  updateBlog(@Args('input') input: BlogInputType) {
+    return this.blogService.updateBlog(input);
   }
 
   @Mutation((returns) => BlogType)
-  deleteBlog(@Args('id') id: number) {
+  deleteBlog(@Args('id') id: string) {
     return this.blogService.deleteBlog(id);
   }
 
