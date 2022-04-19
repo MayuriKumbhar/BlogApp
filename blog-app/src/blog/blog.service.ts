@@ -17,7 +17,7 @@ export class BlogService {
     return this.blogRepository.createBlog(input, user);
   }
 
-  async updateBlog(id: number, input: BlogInputType) {
+  async updateBlog(input: BlogInputType) {
     return this.blogRepository.updateBlog(input);
   }
 
@@ -25,11 +25,11 @@ export class BlogService {
     return this.blogRepository.createupdateBlog(input, user);
   }
 
-  async getBlogById(id: number) {
+  async getBlogById(id: string) {
     return this.blogRepository.getBlogbyId(id);
   }
 
-  async deleteBlog(id: number) {
+  async deleteBlog(id: string) {
     // try deleting the blog with id
     const result = await this.blogRepository.delete(id);
 

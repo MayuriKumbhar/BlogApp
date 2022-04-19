@@ -12,8 +12,8 @@ import { BlogTags } from './blog.enum';
 
 @Entity('Blog')
 export class BlogEntity extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   title: string;

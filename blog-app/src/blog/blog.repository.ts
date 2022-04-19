@@ -23,13 +23,14 @@ export class BlogRepository extends Repository<BlogEntity> {
     return result;
   }
 
-  async getBlogbyId(id: number) {
+  async getBlogbyId(id: string) {
     // select * from Blog where id = {id}
-    const blog = await this.findOne(id);
-    if (!blog) {
-      throw new NotFoundException('blog not found');
+    const query = this.createQueryBuilder('blogs');
+    query.andWhere('blogs.id=:id', { id: id });
+    const blog = query.getOneOrFail();
+    if (blog) {
+      return blog;
     }
-    return blog;
   }
 
   async updateBlog(input: BlogInputType) {
@@ -66,7 +67,7 @@ export class BlogRepository extends Repository<BlogEntity> {
   }
 
   async createupdateBlog(input: BlogInputType, user: UserEntity) {
-    if (input.id == null || input.id == 0 || input.id == undefined) {
+    if (input.id == null || input.id == undefined) {
       return this.createBlog(input, user);
     } else {
       return this.updateBlog(input);

@@ -8,7 +8,7 @@ export const TypeORMConfiguration: TypeOrmModuleOptions = {
   port: 5432,
   host: 'localhost',
   type: 'postgres',
-  database: 'BlogAppV1',
+  database: 'BlogAppV2',
   entities: [__dirname + '/../**/*.entity.{ts,js}'],
 
   // true: all the properties in the entity classes will be synchronized with database
